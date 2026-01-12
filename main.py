@@ -98,7 +98,6 @@ async def disconnect(sid):
 @sio.event
 async def message(sid, data):
     logger.info(f"Message from {sid}: {data}")
-    # Echo back or broadcast...
     await sio.emit("message", {"from": sid, "data": data})
 
 
@@ -139,5 +138,12 @@ app.mount("/", sio_app)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:sio_app", host="0.0.0.0", port=8000, reload=True)
+
+    uvicorn.run(
+        "main:app_asgi",
+        host="0.0.0.0",
+        port=8000,
+        reload=False,
+        timeout_graceful_shutdown=MAX_GRACE_PERIOD + 10  # Give uvicorn slightly more time than our logic
+    )
 
