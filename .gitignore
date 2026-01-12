@@ -1,0 +1,54 @@
+
+
+.idea/
+
+# CMake
+cmake-build-*/
+
+
+# File-based project format
+*.iws
+
+
+# Python-specific files
+__pycache__/
+*.pyc
+.pytest_cache/
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
+htmlcov/
+.tox/
+
+# Virtual environments
+# Common virtual environment names
+venv/
+env/
+ENV/
+.venv/
+env.*
+# Specific to virtualenv
+bin/
+include/
+lib/
+lib64/
+local/
+
+# Dependency management lock files (optional, depends on preference)
+# It is generally recommended to include lock files in version control.
+# If you prefer to ignore them, uncomment the relevant lines below:
+# Pipfile.lock
+# poetry.lock
+# pdm.lock
+
+# Editor/IDE-specific files
+.idea/  # PyCharm/IntelliJ
+.vscode/ # VS Code
+.DS_Store # macOS
+*~ # temporary files (Linux/macOS)
+
+# Environment variables and secrets
+# Contains sensitive API keys and configurations.
+.env
+.env.*
+secrets.ini

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Socket.IO + FastAPI Test</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Real-time Notifications (Socket.IO)</h1>
+    <ul id="messages"></ul>
+
+    <script>
+        const socket = io();
+
+        socket.on('connect', () => {
+            console.log('Connected!');
+        });
+
+        socket.on('welcome', (data) => {
+            addMessage(data.msg);
+        });
+
+        socket.on('notification', (data) => {
+            addMessage(`[${new Date(data.time*1000).toLocaleTimeString()}] ${data.text}`);
+        });
+
+        socket.on('message', (data) => {
+            addMessage(`[from ${data.from.slice(0,6)}...] ${data.data}`);
+        });
+
+        function addMessage(text) {
+            const li = document.createElement('li');
+            li.textContent = text;
+            document.getElementById('messages').appendChild(li);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    </script>
+</body>
+</html>
